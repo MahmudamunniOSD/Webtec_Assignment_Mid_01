@@ -1,581 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Registration</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Register Form </title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, whitesmoke 0%, lightgray 100%);
-            background-attachment: fixed;
-            background-size: cover;
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px 0;
+      }
+      main h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      
+      .container {
+        background-color: #f1f1f1;
+        max-width: 900px; 
+        height: auto;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        min-height: 700px; 
+      }
+      
+      .column {
+        flex: 1; 
+        min-width: 0; 
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .register {
+        border: 2px solid black;
+        flex: 1;
+        padding: 30px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .color-blocks {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%; 
+      }
+      
+      .skyblue , .lightpink {
+        flex: 1; 
+        min-height: 0; 
+      }
+      
+      .skyblue {
+        background-color: skyblue;
+      }
+      
+      .lightpink {
+        background-color: lightpink;
+      }
+      
+      
+      .register-form {
+        display: flex;
+        flex-direction: column;
+        flex: 1; 
+      }
+      
+      .register-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      
+      .form-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      
+      .register-form label {
+        width: 150px;
+        min-width: 150px; 
+        margin-right: 10px;
+      }
+      
+      .register-form input[type="text"],
+      .register-form input[type="email"],
+      .register-form input[type="password"],
+      .register-form input[type="date"],
+      .register-form select,
+      .register-form textarea {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #188d4d;
+        min-width: 0; 
+      }
+      .register-form textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+      .register-form button {
+        margin-top: auto; 
+        padding: 12px;
+        background-color: #333;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .radio-group {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .radio-group label {
+        width: auto;
+      }
+      .terms {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+      }
+      .terms label {
+        width: auto;
+      }
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          min-height: auto;
         }
-        .form-container {
-            background-color: rgba(white, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: darkslategray;
-            margin-bottom: 30px;
-            font-size: 2.2em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        .header-image {
-            display: block;
-            margin: 0 auto 20px;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid royalblue;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: darkslategray;
-        }
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="date"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid gainsboro;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        input:focus, select:focus, textarea:focus {
-            border-color: royalblue;
-            outline: none;
-            box-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
-        }
-        textarea {
-            height: 100px;
-            resize: vertical;
-        }
-        .checkbox-group {
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-        }
-        .checkbox-group input {
-            margin-right: 10px;
-        }
-        button {
-            background: linear-gradient(to right, royalblue, limegreen);
-            color: white;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 18px;
-            width: 100%;
-            font-weight: bold;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        .password-requirements {
-            font-size: 13px;
-            color: dimgray;
-            margin-top: 5px;
-            font-style: italic;
-        }
-        .error {
-            color: crimson;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-        .gender-options {
-            display: flex;
-            gap: 20px;
-        }
-        .gender-option {
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-left: 30px;
-            cursor: pointer;
-        }
-        .gender-option input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-        .checkmark {
-            position: absolute;
-            left: 0;
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
-            border: 2px solid silver;
-            transition: all 0.3s;
-            
-        }
-        .gender-option:hover .checkmark {
-            border-color: gray;
-        }
-        .gender-option input:checked ~ .checkmark {
-            border-color: transparent;
-        }
-        #male:checked ~ .checkmark {
-            background-color: royalblue;
-        }
-        #female:checked ~ .checkmark {
-            background-color: deeppink;
-        }
-        #others:checked ~ .checkmark {
-            background-color: mediumpurple;
-        }
-        .results-container {
-            display: none;
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-
-        .results-container h2 {
-            color: darkslategray;
-            border-bottom: 2px solid royalblue;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-        .result-item {
-            margin-bottom: 15px;
-        }
-        .result-label {
-            font-weight: bold;
-            color: darkslategray;
-        }
-        .name-group {
-            display: flex;
-            gap: 15px;
-        }
-        .name-group .form-group {
-            flex: 1;
-        }
-        .date-inputs {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .date-inputs input {
-            width: 60px;
-            text-align: center;
-        }
-        .date-inputs input:nth-child(3) {
-            width: 80px;
-        }
-        .color-display {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 1px solid silver;
-            vertical-align: middle;
-            margin-left: 10px;
-            border-radius: 3px;
-        }
+        .color-blocks {
+    flex-direction: row;
+     height: 100px;
+     }
+     }
     </style>
-</head>
-<body>
-    <div class="form-container">
-        <img src="D:\Web lab\Music.jpg" alt="Music Logo" class="header-image">
-        <h1>Music Registration</h1>
-        <form id="registrationForm">
-            <div class="name-group">
-                <div class="form-group">
-                    <label for="firstname">First Name:</label>
-                    <input type="text" id="firstname" name="firstname" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastname">Last Name:</label>
-                    <input type="text" id="lastname" name="lastname" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required placeholder="a valid email address">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required 
-                       pattern="[a-zA-Z0-9]{8}" title="Must be exactly 8 alphanumeric characters">
-                <div class="password-requirements">Must be exactly 8 letters/numbers (no special characters or spaces)</div>
-                <div id="passwordError" class="error"></div>
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-                <div id="confirmPasswordError" class="error"></div>
-            </div>
-            <div class="form-group">
-                <label for="dob">Date of Birth (DD/MM/YYYY):</label>
-                <div class="date-inputs">
-                    <input type="text" id="dob-day" name="dob-day" placeholder="DD" maxlength="2" required>
-                    <span>/</span>
-                    <input type="text" id="dob-month" name="dob-month" placeholder="MM" maxlength="2" required>
-                    <span>/</span>
-                    <input type="text" id="dob-year" name="dob-year" placeholder="YYYY" maxlength="4" required>
-                </div>
-                <div id="dobError" class="error"></div>
-            </div>
-            <div class="form-group">
-                <label for="country">Country:</label>
-                <select id="country" name="country" required>
-                    <option value="">Select a country</option>
-                    <option value="AF">Afghanistan</option>
-                    <option value="AL">Albania</option>
-                    <option value="DZ">Algeria</option>
-                    <option value="AR">Argentina</option>
-                    <option value="AM">Armenia</option>
-                    <option value="AU">Australia</option>
-                    <option value="AT">Austria</option>
-                    <option value="AZ">Azerbaijan</option>
-                    <option value="BH">Bahrain</option>
-                    <option value="BD">Bangladesh</option>
-                    <option value="BY">Belarus</option>
-                    <option value="BE">Belgium</option>
-                    <option value="BT">Bhutan</option>
-                    <option value="BO">Bolivia</option>
-                    <option value="BA">Bosnia and Herzegovina</option>
-                    <option value="BR">Brazil</option>
-                    <option value="BG">Bulgaria</option>
-                    <option value="CA">Canada</option>
-                    <option value="CL">Chile</option>
-                    <option value="CN">China</option>
-                    <option value="CO">Colombia</option>
-                    <option value="HR">Croatia</option>
-                    <option value="CU">Cuba</option>
-                    <option value="CZ">Czech Republic</option>
-                    <option value="DK">Denmark</option>
-                    <option value="EC">Ecuador</option>
-                    <option value="EG">Egypt</option>
-                    <option value="EE">Estonia</option>
-                    <option value="FI">Finland</option>
-                    <option value="FR">France</option>
-                    <option value="GE">Georgia</option>
-                    <option value="DE">Germany</option>
-                    <option value="GR">Greece</option>
-                    <option value="HK">Hong Kong</option>
-                    <option value="HU">Hungary</option>
-                    <option value="IS">Iceland</option>
-                    <option value="ID">Indonesia</option>
-                    <option value="IR">Iran</option>
-                    <option value="IQ">Iraq</option>
-                    <option value="IE">Ireland</option>
-                    <option value="IT">Italy</option>
-                    <option value="JP">Japan</option>
-                    <option value="KZ">Kazakhstan</option>
-                    <option value="KE">Kenya</option>
-                    <option value="KW">Kuwait</option>
-                    <option value="LV">Latvia</option>
-                    <option value="LB">Lebanon</option>
-                    <option value="LT">Lithuania</option>
-                    <option value="LU">Luxembourg</option>
-                    <option value="MY">Malaysia</option>
-                    <option value="MV">Maldives</option>
-                    <option value="MT">Malta</option>
-                    <option value="MX">Mexico</option>
-                    <option value="MD">Moldova</option>
-                    <option value="MC">Monaco</option>
-                    <option value="MA">Morocco</option>
-                    <option value="NP">Nepal</option>
-                    <option value="NL">Netherlands</option>
-                    <option value="NZ">New Zealand</option>
-                    <option value="NG">Nigeria</option>
-                    <option value="KP">North Korea</option>
-                    <option value="NO">Norway</option>
-                    <option value="OM">Oman</option>
-                    <option value="PK">Pakistan</option>
-                    <option value="PA">Panama</option>
-                    <option value="PY">Paraguay</option>
-                    <option value="PE">Peru</option>
-                    <option value="PH">Philippines</option>
-                    <option value="PL">Poland</option>
-                    <option value="PT">Portugal</option>
-                    <option value="QA">Qatar</option>
-                    <option value="RO">Romania</option>
-                    <option value="RU">Russia</option>
-                    <option value="SA">Saudi Arabia</option>
-                    <option value="RS">Serbia</option>
-                    <option value="SG">Singapore</option>
-                    <option value="SK">Slovakia</option>
-                    <option value="SI">Slovenia</option>
-                    <option value="ZA">South Africa</option>
-                    <option value="KR">South Korea</option>
-                    <option value="ES">Spain</option>
-                    <option value="LK">Sri Lanka</option>
-                    <option value="SE">Sweden</option>
-                    <option value="CH">Switzerland</option>
-                    <option value="TW">Taiwan</option>
-                    <option value="TJ">Tajikistan</option>
-                    <option value="TH">Thailand</option>
-                    <option value="TR">Turkey</option>
-                    <option value="TM">Turkmenistan</option>
-                    <option value="UA">Ukraine</option>
-                    <option value="AE">United Arab Emirates</option>
-                    <option value="UZ">Uzbekistan</option>
-                    <option value="VE">Venezuela</option>
-                    <option value="VN">Vietnam</option>
-                    <option value="YE">Yemen</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label>Gender:</label>
-                <div class="gender-options">
-                    <label class="gender-option">
-                        <input type="radio" id="male" name="gender" value="male" required>
-                        <span class="checkmark"></span>
-                        Male
-                    </label>
-                    <label class="gender-option">
-                        <input type="radio" id="female" name="gender" value="female">
-                        <span class="checkmark"></span>
-                        Female
-                    </label>
-                    <label class="gender-option">
-                        <input type="radio" id="others" name="gender" value="others">
-                        <span class="checkmark"></span>
-                        Others
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="color">Favorite Color:</label>
-                <select id="color" name="color" required>
-                    <option value="Red">Red</option>
-                    <option value="Blue" selected>Blue</option>
-                    <option value="Green">Green</option>
-                    <option value="Yellow">Yellow</option>
-                    <option value="Orange">Orange</option>
-                    <option value="Purple">Purple</option>
-                    <option value="Pink">Pink</option>
-                    <option value="Brown">Brown</option>
-                    <option value="Black">Black</option>
-                    <option value="White">White</option>
-                    <option value="Gray">Gray</option>
-                    <option value="Cyan">Cyan</option>
-                    <option value="Magenta">Magenta</option>
-                    <option value="Lime">Lime</option>
-                    <option value="Maroon">Maroon</option>
-                    <option value="Navy">Navy</option>
-                    <option value="Olive">Olive</option>
-                    <option value="Teal">Teal</option>
-                    <option value="Silver">Silver</option>
-                    <option value="Gold">Gold</option>
-                </select>
-                <div id="colorDisplay" class="color-display" style="background-color: royalblue;"></div>
-            </div>
-            <div class="form-group">
-                <label for="opinion">Your Opinion:</label>
-                <textarea id="opinion" name="opinion" placeholder="Share your thoughts with us..."></textarea>
-            </div>
-            <div class="checkbox-group">
-                <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">I agree to the terms and conditions</label>
-            </div>
-            <button type="submit">Register</button>
-        </form>
-        <div id="resultsContainer" class="results-container">
-            <h2>Your Submission Details</h2>
-            <div class="result-item">
-                <span class="result-label">First Name:</span>
-                <span id="resultFirstname"></span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Last Name:</span>
-                <span id="resultLastname"></span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Email:</span>
-                <span id="resultEmail"></span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Date of Birth:</span>
-                <span id="resultDob"></span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Country:</span>
-                <span id="resultCountry"></span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Gender:</span>
-                <span id="resultGender"></span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Favorite Color:</span>
-                <span id="resultColor"></span>
-                <div id="resultColorDisplay" class="color-display"></div>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Your Opinion:</span>
-                <span id="resultOpinion"></span>
-            </div>
-        </div>
+  </head>
+  <body>
+    <header>
+    <div>
+    <img src="C:\Users\h\Downloads\aiub_logo.jpg" alt="Logo" class="logo">
     </div>
-    <script>
-        const colorMap = {
-            'Red': 'red',
-            'Blue': 'royalblue',
-            'Green': 'limegreen',
-            'Yellow': 'yellow',
-            'Orange': 'orange',
-            'Purple': 'purple',
-            'Pink': 'pink',
-            'Brown': 'brown',
-            'Black': 'black',
-            'White': 'white',
-            'Gray': 'gray',
-            'Cyan': 'cyan',
-            'Magenta': 'magenta',
-            'Lime': 'lime',
-            'Maroon': 'maroon',
-            'Navy': 'navy',
-            'Olive': 'olive',
-            'Teal': 'teal',
-            'Silver': 'silver',
-            'Gold': 'gold'
-        };
-        document.getElementById('color').addEventListener('change', function() {
-            const colorName = this.value;
-            document.getElementById('colorDisplay').style.backgroundColor = colorMap[colorName] || 'royalblue';
-        });
-        document.getElementById('registrationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let isValid = true;
-            const password = document.getElementById('password').value;
-            const passwordError = document.getElementById('passwordError');
+    </header>
+    <main>    
+    <h1>Registration Form</h1>
+    <div class="container">
+    <div class="column">
+    <div class="register">
+    <form class="register-form">
+    <h2>Register</h2>
             
+    <div class="form-row">
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" pattern="[A-Za-z\s]+" required />
+    </div>
+    <div class="form-row">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+    </div>
+    <div class="form-row">
+    <label for="password">Password:</label>
+     <input type="password" id="password" name="password" minlength="8" required />
+     </div>
+     <div class="form-row">
+    <label for="confirm-password">Confirm Password:</label>
+    <input type="password" id="confirm-password" name="confirm-password" minlength="8" required />
+    </div>
+    <div class="form-row">
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required />
+    </div>
+    <div class="form-row">
+    <label for="country">Country:</label>
+    <select id="country" name="country" required>
+     <option value="country">Select</option>
+     <option value="country">Bangladesh</option>
+     <option value="country">Bhutan</option>
+     <option value="country">Pakistan</option>
+     <option value="country">Nepal</option>
+    <option value="country">UAE</option>
+    <option value="country">Palestine</option>
+    <option value="country">Australia</option>
+     </select>
+    </div>
+     <div class="form-row">
+     <label>Gender:</label>
+    <div class="radio-group">
+     <div>
+    <input type="radio" id="male" name="gender" value="male" required />
+    <label for="male">Male</label>
+        
+    </div>
+     <div>
+      <input type="radio" id="female" name="gender" value="female" />
+      <label for="female">Female</label>
+     </div>
+     <div>
+     <input type="radio" id="other" name="gender" value="other" />
+     <label for="other">Other</label>
+     </div>
+    </div>
+    </div>
 
-            if (!/^[a-zA-Z0-9]{8}$/.test(password)) {
-                passwordError.textContent = 'Password must be exactly 8 letters/numbers (no special characters)';
-                isValid = false;
-            } else {
-                passwordError.textContent = '';
-            }
-            const confirmPassword = document.getElementById('confirm-password').value;
-            const confirmPasswordError = document.getElementById('confirmPasswordError');
-            
+     <div class="form-row">
+     <label for="color">Favorite Color:</label>
+     <input type="color" id="color" name="color" />
+     </div>
 
-            if (password !== confirmPassword) {
-                confirmPasswordError.textContent = 'Passwords do not match';
-                isValid = false;
-            } else {
-                confirmPasswordError.textContent = '';
-            }
-            const day = document.getElementById('dob-day').value;
-            const month = document.getElementById('dob-month').value;
-            const year = document.getElementById('dob-year').value;
-            const dobError = document.getElementById('dobError');
-            
+    <div class="form-row">
+     <label for="opinion">Your Opinion:</label>
+     <textarea id="opinion" name="opinion" rows="3"></textarea>
+    </div>
 
+    <div class=" terms ">
+    <input type="checkbox" id=" terms " name=" terms " required />
+    <label for =" terms "> I agree to the <a href="#"> terms and conditions </a></label>
+    </div>
 
-            if (!day || !month || !year) {
-                dobError.textContent = 'Please enter a complete date';
-                isValid = false;
-            } else {
-                const dayNum = parseInt(day);
-                const monthNum = parseInt(month);
-                const yearNum = parseInt(year);
-                
+     <button type="submit">Submit</button>
+     </form>
+     </div>
+    </div>
 
-
-                if (isNaN(dayNum)) {
-                    dobError.textContent = 'Day must be a number';
-                    isValid = false;
-                } else if (dayNum < 1 || dayNum > 31) {
-                    dobError.textContent = 'Day must be between 1 and 31';
-                    isValid = false;
-                } else if (isNaN(monthNum)) {
-                    dobError.textContent = 'Month must be a number';
-                    isValid = false;
-                } else if (monthNum < 1 || monthNum > 12) {
-                    dobError.textContent = 'Month must be between 1 and 12';
-                    isValid = false;
-                } else if (isNaN(yearNum)) {
-                    dobError.textContent = 'Year must be a number';
-                    isValid = false;
-                } else if (yearNum < 1900 || yearNum > new Date().getFullYear()) {
-                    dobError.textContent = 'Year must be between 1900 and current year';
-                    isValid = false;
-                } else {
-                    const testDate = new Date(yearNum, monthNum - 1, dayNum);
-                    if (testDate.getDate() !== dayNum || testDate.getMonth() !== monthNum - 1 || testDate.getFullYear() !== yearNum) {
-                        dobError.textContent = 'Invalid date';
-                        isValid = false;
-                    } else {
-                        const cutoffDate = new Date();
-                        cutoffDate.setFullYear(cutoffDate.getFullYear() - 18);
-                          
-
-
-                        if (testDate > cutoffDate) {
-                            dobError.textContent = 'You must be at least 18 years old';
-                            isValid = false;
-                        } else {
-                            dobError.textContent = '';
-                        }
-                    }
-                }
-            }
-            if (isValid) {
-                document.getElementById('resultFirstname').textContent = document.getElementById('firstname').value;
-                document.getElementById('resultLastname').textContent = document.getElementById('lastname').value;
-                document.getElementById('resultEmail').textContent = document.getElementById('email').value;
-                document.getElementById('resultDob').textContent = `${day}/${month}/${year}`;
-                document.getElementById('resultCountry').textContent = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
-                const gender = document.querySelector('input[name="gender"]:checked');
-                document.getElementById('resultGender').textContent = gender ? gender.value : '';
-                const colorName = document.getElementById('color').value;
-                document.getElementById('resultColor').textContent = colorName;
-                document.getElementById('resultColorDisplay').style.backgroundColor = colorMap[colorName] || 'royalblue';
-                document.getElementById('resultOpinion').textContent = document.getElementById('opinion').value || 'No opinion provided';
-                document.getElementById('registrationForm').style.display = 'none';
-                document.getElementById('resultsContainer').style.display = 'block';
-            }
-        });
-        document.getElementById('password').addEventListener('input', function() {
-            const password = this.value;
-            const passwordError = document.getElementById('passwordError');
-            if (!/^[a-zA-Z0-9]{0,8}$/.test(password)) {
-                this.value = password.slice(0, 8).replace(/[^a-zA-Z0-9]/g, '');
-            }
-            if (password.length > 8) {
-                this.value = password.slice(0, 8);
-            }
-        });
-        document.getElementById('dob-day').addEventListener('input', function() {
-            if (this.value.length === 2) {
-                document.getElementById('dob-month').focus();
-            }
-        });
-        document.getElementById('dob-month').addEventListener('input', function() {
-            if (this.value.length === 2) {
-     document.getElementById('dob-year').focus();
-            }
-        });
-    </script>
-</body>
-</html>
+    <div class="column">
+    <div class="color-blocks">
+     <div class="skyblue"></div>
+     <div class="lightpink"></div>
+    </div>
+    </div>
+    </div>
+    </main>
+    </body>
+    </html>
